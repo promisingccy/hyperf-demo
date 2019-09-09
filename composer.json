@@ -45,7 +45,9 @@
         "hyperf/elasticsearch": "~1.0.0",
         "hyperf/tracer": "~1.0.0",
         "hyperf/crontab": "^1.0",
-        "doctrine/dbal": "^2.9"
+        "doctrine/dbal": "^2.9",
+        "hyperf/websocket-server": "^1.0",
+        "hyperf/websocket-client": "^1.0"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",

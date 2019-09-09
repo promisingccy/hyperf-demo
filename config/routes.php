@@ -16,3 +16,7 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@i
 Router::addRoute(['GET', 'POST', 'HEAD'], '/es', 'App\Controller\IndexController@es');
 Router::addRoute(['GET', 'POST', 'HEAD'], '/mysql', 'App\Controller\IndexController@mysql');
 Router::addRoute(['GET', 'POST', 'HEAD'], '/redis', 'App\Controller\IndexController@redis');
+
+Router::addServer('ws', function () {
+    Router::get('/', 'App\Controller\WebSocketController');
+});
