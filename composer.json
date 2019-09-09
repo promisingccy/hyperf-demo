@@ -47,7 +47,10 @@
         "hyperf/crontab": "^1.0",
         "doctrine/dbal": "^2.9",
         "hyperf/websocket-server": "^1.0",
-        "hyperf/websocket-client": "^1.0"
+        "hyperf/websocket-client": "^1.0",
+        "hyperf/view": "^1.0",
+        "hyperf/task": "^1.0",
+        "duncan3dc/blade": "^4.7"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",
