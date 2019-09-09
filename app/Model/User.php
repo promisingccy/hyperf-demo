@@ -1,0 +1,47 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ccy
+ * Date: 2019/9/4
+ * Time: 16:50
+ */
+
+declare(strict_types=1);
+
+namespace App\Model;
+
+/**
+ * @property int $id
+ * @property string $mobile
+ * @property string $realname
+ */
+class User extends Model
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'prs_user';
+
+    /**
+     * The connection name for the model.
+     *
+     * @var string
+     */
+    protected $connection = 'default';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id', 'mobile', 'realname'];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = ['id' => 'integer'];
+}
