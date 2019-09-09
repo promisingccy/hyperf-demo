@@ -1,10 +1,94 @@
+<?php
+$pulicRoot = config('server.servers.settings.document_root');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hyperf</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Client</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ $pulicRoot }}/css/chat.css">
 </head>
 <body>
-Hello, {{ $name }}. You are using blade template now.
+<h1>Hello, {{ $name }}. You are using blade template now.</h1>
+
+<div id="chat-wrap">
+    <div id="result"></div>
+    <ul class="chat-thread">
+        <li class="you"><img class="head" src="{{ $pulicRoot }}/images/head1.jpg" alt=""><p>Are we meeting today?</p></li>
+        <li class="you"><img class="head" src="{{ $pulicRoot }}/images/head1.jpg" alt=""><p>yes</p></li>
+        <li class="me"><img class="head" src="{{ $pulicRoot }}/images/head1.jpg" alt=""><p>一部分保持在行尾，另一部分换到下一行。</p></li>
+        <li class="you"><img class="head" src="{{ $pulicRoot }}/images/head1.jpg" alt=""><p>yes</p></li>
+        <li class="you"><img class="head" src="{{ $pulicRoot }}/images/head1.jpg" alt=""><p>yes</p></li>
+    </ul>
+
+</div>
+<div class="send">
+    <form action="">
+        <input type="text" class="form-control" id="m" autocomplete="off" placeholder="请输入内容">
+        <button type="submit" class="btn btn-info">发送</button>
+    </form>
+</div>
+
+
+<!-- <div>
+    <div id="result"></div>
+    <form class="form-inline" action="">
+      <div class="form-group">
+        <input type="text" class="form-control" id="m" autocomplete="off" placeholder="请输入内容">
+      </div>
+      <button type="submit" class="btn btn-info">发送</button>
+    </form>
+</div> -->
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    if ("WebSocket" in window) {
+        var ws = new WebSocket("ws://10.0.84.92:9502");
+
+        var result = document.querySelector('#result');
+
+        var chatthread = document.querySelector('.chat-thread');
+        chatthread.scrollTop = chatthread.scrollHeight;
+
+        ws.onopen = function() {
+            result.innerHTML = '已连接上！';
+            $('#result').show().html('已连接上！').fadeOut(1500);
+            console.log('已连接上！');
+        }
+
+        document.querySelector('form').onsubmit = function(e) {
+            var msg = document.querySelector('#m').value;
+            ws.send(msg);
+            $('.chat-thread').append('<li class="me"><img class="head" src="images/head1.jpg" alt=""><p>'+msg+'</p></li>');
+            chatthread.scrollTop = chatthread.scrollHeight;
+            document.querySelector('#m').value = '';
+            return false;
+        }
+        ws.onmessage = function(e) {
+            if(e.data instanceof Blob) {
+                // var img = document.createElement("img");
+                // img.src = window.URL.createObjectURL(e.data);
+                // result.appendChild(img);
+                // var d = window.URL.createObjectURL(e.data);
+                // console.log(d);
+                var img = '<img src="'+window.URL.createObjectURL(e.data)+'" width="180"/>';
+                $('.chat-thread').append('<li class="you"><img class="head" src="images/head1.jpg" alt=""><p>'+img+'</p></li>');
+            }else {
+                // var p = document.createElement("p");
+                // p.innerHTML = e.data;
+                // result.appendChild(p);
+                $('.chat-thread').append('<li class="you"><img class="head" src="images/head1.jpg" alt=""><p>'+e.data+'</p></li>');
+            }
+            chatthread.scrollTop = chatthread.scrollHeight;
+        }
+        ws.onclose = function() {
+            console.log('连接已关闭！');
+        }
+    } else {
+        alert('您的浏览器不支持 WebSocket！');
+    }
+</script>
 </body>
 </html>
