@@ -24,9 +24,10 @@ class WsController
     public function index()
     {
         // 对端服务的地址，如没有提供 ws:// 或 wss:// 前缀，则默认补充 ws://
-        $host = 'localhost:9502/ws/';
+        $host = '127.0.0.1:9502';
         // 通过 ClientFactory 创建 Client 对象，创建出来的对象为短生命周期对象
-        $client = $this->clientFactory->create($host);
+        $autoClose = false;
+        $client = $this->clientFactory->create($host, $autoClose);
         // 向 WebSocket 服务端发送消息
         $client->push('HttpServer 中使用 WebSocket Client 发送数据。');
         // 获取服务端响应的消息，服务端需要通过 push 向本客户端的 fd 投递消息，才能获取；以下设置超时时间 2s，接收到的数据类型为 Frame 对象。

@@ -18,6 +18,21 @@ use Swoole\Websocket\Frame;
 
 class WebSocketController implements OnMessageInterface, OnOpenInterface, OnCloseInterface
 {
+//    public function onMessage(Server $server, Frame $frame): void
+//    {
+//        $server->push($frame->fd, 'Recv: ' . $frame->data);
+//    }
+//
+//    public function onClose(Server $server, int $fd, int $reactorId): void
+//    {
+//        var_dump('closed');
+//    }
+//
+//    public function onOpen(Server $server, Request $request): void
+//    {
+//        $server->push($request->fd, 'Opened');
+//    }
+
     public function onMessage(Server $server, Frame $frame): void
     {
 //        $server->push($frame->fd, 'Recv: ' . $frame->data);
@@ -50,11 +65,11 @@ class WebSocketController implements OnMessageInterface, OnOpenInterface, OnClos
         $server->push($request->fd, 'Opened');
     }
 
-    public function start(Server $server)
-    {
-        // Run worker
-        $server->start();
-    }
+//    public function start(Server $server)
+//    {
+//        // Run worker
+//        $server->start();
+//    }
 
     private function reply($str) {
         $str = mb_strtolower($str);

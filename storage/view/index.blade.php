@@ -61,7 +61,7 @@ $pulicRoot = config('server.servers.settings.document_root');
         document.querySelector('form').onsubmit = function(e) {
             var msg = document.querySelector('#m').value;
             ws.send(msg);
-            $('.chat-thread').append('<li class="me"><img class="head" src="images/head1.jpg" alt=""><p>'+msg+'</p></li>');
+            $('.chat-thread').append('<li class="me"><img class="head" src="<? echo $pulicRoot;?>/images/head1.jpg" alt=""><p>'+msg+'</p></li>');
             chatthread.scrollTop = chatthread.scrollHeight;
             document.querySelector('#m').value = '';
             return false;
@@ -74,12 +74,12 @@ $pulicRoot = config('server.servers.settings.document_root');
                 // var d = window.URL.createObjectURL(e.data);
                 // console.log(d);
                 var img = '<img src="'+window.URL.createObjectURL(e.data)+'" width="180"/>';
-                $('.chat-thread').append('<li class="you"><img class="head" src="images/head1.jpg" alt=""><p>'+img+'</p></li>');
+                $('.chat-thread').append('<li class="you"><img class="head" src=""<? echo $pulicRoot;?>/images/head1.jpg" alt=""><p>'+img+'</p></li>');
             }else {
                 // var p = document.createElement("p");
                 // p.innerHTML = e.data;
                 // result.appendChild(p);
-                $('.chat-thread').append('<li class="you"><img class="head" src="images/head1.jpg" alt=""><p>'+e.data+'</p></li>');
+                $('.chat-thread').append('<li class="you"><img class="head" src=""<? echo $pulicRoot;?>/images/head1.jpg" alt=""><p>'+e.data+'</p></li>');
             }
             chatthread.scrollTop = chatthread.scrollHeight;
         }
