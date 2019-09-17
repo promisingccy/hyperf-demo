@@ -14,6 +14,7 @@ use Hyperf\View\RenderInterface;
 
 /**
  * @AutoController
+ * 视图控制器
  */
 class ViewController
 {

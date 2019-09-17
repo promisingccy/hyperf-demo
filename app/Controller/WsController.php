@@ -18,6 +18,7 @@ class WsController
     /**
      * @Inject
      * @var ClientFactory
+     * websocket客户端控制器
      */
     protected $clientFactory;
 

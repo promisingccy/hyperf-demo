@@ -16,6 +16,7 @@ use Hyperf\HttpServer\Annotation\AutoController;
 
 /**
  * @AutoController
+ * 异步队列控制器
  */
 class QueueController extends Controller
 {

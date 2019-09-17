@@ -37,12 +37,12 @@ class WebSocketController implements OnMessageInterface, OnOpenInterface, OnClos
     {
 //        $server->push($frame->fd, 'Recv: ' . $frame->data);
         if ($frame->data == '图片') {
-            $server->push($frame->fd, file_get_contents('https://www.helloweba.net/images/hellowebanet.png'), WEBSOCKET_OPCODE_BINARY);
-        } elseif ($frame->data == '美女') {
+            $server->push($frame->fd, file_get_contents('https://www.baidu.com/img/baidu_jgylogo3.gif'), WEBSOCKET_OPCODE_BINARY);
+        } elseif ($frame->data == '百度') {
             $mmpic = [
-                'http://pic15.photophoto.cn/20100402/0036036889148227_b.jpg',
-                'http://pic23.nipic.com/20120814/5914324_155903179106_2.jpg',
-                'http://pic40.nipic.com/20140403/8614226_162017444195_2.jpg'
+                'https://www.baidu.com/img/baidu_jgylogo3.gif',
+                'https://www.baidu.com/img/baidu_jgylogo3.gif',
+                'https://www.baidu.com/img/baidu_jgylogo3.gif'
             ];
             $picKey = array_rand($mmpic);
             $server->push($frame->fd, file_get_contents($mmpic[$picKey]), WEBSOCKET_OPCODE_BINARY);
@@ -76,11 +76,6 @@ class WebSocketController implements OnMessageInterface, OnOpenInterface, OnClos
         switch ($str) {
             case 'hello':
                 $res = 'Hello, Friend.';
-                break;
-
-            case 'fuck':
-                $res = 'Fuck bitch.';
-
                 break;
             case 'ping':
                 $res = 'PONG.';

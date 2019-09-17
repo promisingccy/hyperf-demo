@@ -33,16 +33,8 @@ class IndexController extends Controller
         ];
     }
 
-    public function queue()
-    {
 
-        return [
-            'code' => 200,
-            'message' => '操作成功',
-            'data' => [],
-        ];
-    }
-
+    //Redis操作示例
     public function redis()
     {
         $redis = $this->container->get(\Redis::class);
@@ -55,7 +47,7 @@ class IndexController extends Controller
         ];
     }
 
-
+    //Mysql操作示例
     public function mysql()
     {
 
@@ -71,6 +63,7 @@ class IndexController extends Controller
         ];
     }
 
+    //Es操作示例
     public function es()
     {
         $host = 'http://10.0.84.237:9200';
